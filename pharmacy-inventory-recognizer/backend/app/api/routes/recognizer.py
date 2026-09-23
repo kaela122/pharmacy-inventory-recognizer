@@ -1,9 +1,10 @@
-"""COM244 recognizer endpoints -- the automata core exposed over HTTP.
+"""CCAUTOMA recognizer endpoints -- the automata core exposed over HTTP.
 These endpoints need no database, so they run out of the box."""
 from __future__ import annotations
 
 from fastapi import APIRouter
 
+from app.automata.construction import theory_report
 from app.schemas.recognizer import (AutomatonInfo, RecognizeRequest,
                                      RecognizeResponse)
 from app.services import recognizer_service
@@ -21,3 +22,10 @@ def get_automaton_info():
 def validate_code(payload: RecognizeRequest):
     """Validate one code and return the verdict + full transition trace."""
     return recognizer_service.recognize_code(payload.code)
+
+
+@router.get("/theory")
+def get_theory():
+    """RE -> NFA -> subset construction -> minimization, as data.
+    Computed live from construction.py (the same code behind --theory)."""
+    return theory_report()

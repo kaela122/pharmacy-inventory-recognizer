@@ -27,10 +27,10 @@ export function dfaReason(code:string, r:DFAResult):string{
   if(r.invalid.length) return "symbol(s) not in alphabet: "+r.invalid.map(x=>`'${x}'`).join(", ");
   const n=code.length;
   if(!n) return "empty — need a letter + 3 digits";
-  if(n<4) return `too short (${n}) — need exactly 4`;
-  if(n>4) return `too long (${n}) — need exactly 4`;
   if(!LETTERS.includes(code[0])) return "must start with M, S or C";
-  return "digits misplaced";
+  for(let i=1;i<Math.min(n,4);i++) if(!isDigit(code[i])) return `symbol ${i+1} must be a digit, found '${code[i]}'`;
+  if(n<4) return `too short (${n}) — need exactly 4`;
+  return `too long (${n}) — need exactly 4`;
 }
 export const catName = (letter:string)=> NAME[letter] || "";
 export const peso = (n:number)=> "₱"+Number(n).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});

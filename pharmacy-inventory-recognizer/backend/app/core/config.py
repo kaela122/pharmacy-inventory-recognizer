@@ -8,7 +8,7 @@ except ImportError:  # pragma: no cover
 
 
 class Settings(BaseSettings):
-    app_name: str = "MedIQ — Pharmacy Inventory & Code Recognizer"
+    app_name: str = "PharmaHub — Pharmacy Inventory & Code Recognizer"
     api_prefix: str = "/api"
     # SQLite by default => nothing to install. Point at Postgres in .env if you like.
     database_url: str = "sqlite:///./pharmahub.db"

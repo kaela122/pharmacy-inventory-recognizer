@@ -5,7 +5,7 @@ A tiny, generic DFA engine. It knows nothing about pharmacy codes; it just
 runs whatever transition function it is given, symbol by symbol, and records
 the trace of state transitions.
 
-This directly satisfies the COM244 "Required Program Features":
+This directly satisfies the CCAUTOMA "Required Program Features":
   * process the input symbol by symbol
   * display the state transitions
   * identify the final state reached
@@ -90,13 +90,14 @@ def run(input_string: str) -> RunResult:
 def transition_table() -> list[dict[str, str]]:
     """
     Return the DFA transition table as a list of row dicts, ready to print
-    or serialize to JSON. Columns are M, S, 0-9 (the digit class).
+    or serialize to JSON. Columns are M, S, C and 0-9 (the digit class).
     """
     rows = []
     for state in d.STATES:
         row = {"state": state}
         row["M"] = d.step(state, "M")
         row["S"] = d.step(state, "S")
+        row["C"] = d.step(state, "C")
         row["0-9"] = d.step(state, "0")  # any digit represents the class
         row["type"] = (
             "start+accept"

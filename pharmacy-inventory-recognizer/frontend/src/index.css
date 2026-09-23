@@ -154,3 +154,46 @@ svg.chart{width:100%;height:auto;display:block}
   aside{position:fixed;left:0;top:0;z-index:30;transform:translateX(-100%);transition:.25s}
   aside.open{transform:none}.burger{display:block}.cards{grid-template-columns:1fr 1fr}.content{padding:16px}
 }
+
+/* Automata Theory page */
+.th-summary{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px}
+.th-summary .panel + .panel{margin-top:0}
+.th-re{display:flex;flex-direction:column;gap:4px}
+.th-k{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.th-big{font-size:24px;font-weight:700;color:var(--accent2)}
+.th-small{font-size:12px;color:var(--muted);font-family:var(--mono)}
+.th-flow{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.th-count{display:flex;flex-direction:column;align-items:center;min-width:70px}
+.th-count b{font-size:28px;font-weight:800;line-height:1.1}
+.th-count span{font-size:11px;color:var(--muted)}
+.th-arrow{color:var(--faint);font-size:18px}
+.b-bad{color:var(--bad);background:var(--bad-bg)}
+.th-scroll{overflow-x:auto}
+.th-table td,.th-table th{padding:9px 12px;white-space:nowrap}
+.th-table td{font-size:13px}
+.th-dim{color:var(--faint)}
+.th-muted{color:var(--muted)}
+.th-eps{color:var(--c2)}
+.th-note{color:var(--muted);font-size:12.5px;margin:10px 0 0}
+.th-tuple{font-size:18px;margin:0 0 8px}
+.th-list{margin:0;padding-left:18px;font-size:13.5px;line-height:1.8}
+.th-list b{font-family:var(--mono)}
+.th-diagram{background:#fff;border-radius:10px;padding:14px;overflow-x:auto;text-align:center}
+.th-diagram img{max-width:100%;height:auto;min-width:520px}
+.th-controls{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 12px}
+.th-step{background:#0d1318;border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:13.5px;line-height:1.7;overflow-x:auto;white-space:nowrap}
+.th-new{color:var(--accent2)}
+.th-row-on td{background:#0f1c17}
+.th-cell-on{background:var(--accent)!important;color:var(--accent-ink);font-weight:700;border-radius:4px}
+.th-rounds{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.th-round{display:flex;align-items:center;gap:12px;padding:8px 10px;border-radius:10px;border:1px solid transparent;opacity:.55}
+.th-round.on{opacity:1;border-color:var(--line);background:#0d1318}
+.th-pl{font-weight:700;color:var(--muted);min-width:26px}
+.th-blocks{display:flex;gap:10px;flex-wrap:wrap}
+.th-block{display:inline-flex;gap:4px;padding:4px 6px;border:1px dashed var(--line);border-radius:9px}
+.th-chip{font-size:12px;font-weight:700;padding:2px 8px;border:1.5px solid;border-radius:999px}
+.th-explain{font-size:13.5px;margin:12px 0 0}
+.th-merge{display:flex;flex-direction:column;gap:8px}
+.th-mrow{display:flex;align-items:center;gap:12px}
+@media (max-width:900px){.th-summary{grid-template-columns:1fr}}
+.th-table th{text-transform:none;letter-spacing:0;font-size:12px}

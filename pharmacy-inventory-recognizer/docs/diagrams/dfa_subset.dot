@@ -1,0 +1,32 @@
+digraph G {
+ rankdir=LR; bgcolor="white"; nodesep=0.35; ranksep=0.55;
+ node [shape=circle fontname="Helvetica" fontsize=13 width=0.6 fixedsize=false];
+ edge [fontname="Helvetica" fontsize=11];
+ start [shape=point width=0.08];
+ start -> "T0";
+ "T0" [shape=circle label="T0\n{p0}"];
+ "T1" [shape=circle label="T1\n{p1, p4}"];
+ "T2" [shape=circle label="T2\n{p2, p4}"];
+ "T3" [shape=circle label="T3\n{p3, p4}"];
+ "∅" [shape=circle label="∅" style=dashed color="gray40" fontcolor="gray30"];
+ "T4" [shape=circle label="T4\n{p5}"];
+ "T5" [shape=circle label="T5\n{p6}"];
+ "T6" [shape=doublecircle label="T6\n{p7}"];
+ { rank=sink; "∅"; }
+ "T0" -> "T1" [label="M"];
+ "T0" -> "T2" [label="S"];
+ "T0" -> "T3" [label="C"];
+ "T0" -> "∅" [label="0-9" color="gray60" fontcolor="gray40"];
+ "T1" -> "∅" [label="M, S, C" color="gray60" fontcolor="gray40"];
+ "T1" -> "T4" [label="0-9"];
+ "T2" -> "∅" [label="M, S, C" color="gray60" fontcolor="gray40"];
+ "T2" -> "T4" [label="0-9"];
+ "T3" -> "∅" [label="M, S, C" color="gray60" fontcolor="gray40"];
+ "T3" -> "T4" [label="0-9"];
+ "∅" -> "∅" [label="M, S, C, 0-9"];
+ "T4" -> "∅" [label="M, S, C" color="gray60" fontcolor="gray40"];
+ "T4" -> "T5" [label="0-9"];
+ "T5" -> "∅" [label="M, S, C" color="gray60" fontcolor="gray40"];
+ "T5" -> "T6" [label="0-9"];
+ "T6" -> "∅" [label="M, S, C, 0-9" color="gray60" fontcolor="gray40"];
+}

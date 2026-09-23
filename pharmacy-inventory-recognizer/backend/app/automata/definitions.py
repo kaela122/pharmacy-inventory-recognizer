@@ -1,13 +1,14 @@
 """
-Formal-language definitions for the pharmacy product-code recognizer (COM244).
+Formal-language definitions for the pharmacy product-code recognizer (CCAUTOMA).
 Single source of truth: the CLI simulator, the API, and the docs all use this.
 
 Language: one category letter then exactly three digits.
     M = Medicine, S = Supplement, C = Consumable
     e.g. M001, S002, C001
 
-Regular expression:  (M|S|C)(0-9)(0-9)(0-9)
-Alphabet (Sigma):    { M, S, C, 0..9 }
+Regular expression:  (M|S|C)DDD   where D = (0|1|2|3|4|5|6|7|8|9)
+                     (practical regex syntax: (M|S|C)[0-9][0-9][0-9])
+Alphabet (Sigma):    { M, S, C, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }   (13 symbols)
 """
 from __future__ import annotations
 
@@ -15,7 +16,8 @@ LETTERS = ("M", "S", "C")
 DIGITS = tuple("0123456789")
 ALPHABET = frozenset(LETTERS + DIGITS)
 
-REGEX = "(M|S|C)(0-9)(0-9)(0-9)"
+REGEX = "(M|S|C)DDD, D = (0|1|2|3|4|5|6|7|8|9)"
+REGEX_PRACTICAL = "^(M|S|C)[0-9][0-9][0-9]$"   # same language, Python re syntax
 TABLE_COLUMNS = ("M", "S", "C", "0-9")
 
 # Minimized DFA: q0 -letter-> q1 -digit-> q2 -digit-> q3 -digit-> q4 (accept)

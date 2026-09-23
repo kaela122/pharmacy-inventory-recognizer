@@ -8,13 +8,14 @@ const I = {
   suppliers:"M3 8h13v9H3zM16 11h4l1 3v3h-5 M6.5 21a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3 M18 21a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3",
   analytics:"M4 20V10M10 20V4M16 20v-7M22 20H2",
   recognizer:"M4 4h4V2H2v6h2zM20 4v4h2V2h-6v2zM4 20v-4H2v6h6v-2zM20 20h-4v2h6v-6h-2zM7 12h10",
+  theory:"M6 6a2 2 0 1 0 0 .01M18 6a2 2 0 1 0 0 .01M12 18a2 2 0 1 0 0 .01M8 6h8M7 8l4 8M17 8l-4 8",
   users:"M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2 M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8 M23 21v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75",
 };
 const NAV = [
   {key:"dashboard",label:"Dashboard"},{key:"medicines",label:"Medicines"},
   {key:"categories",label:"Categories"},{key:"orders",label:"Orders"},
   {key:"suppliers",label:"Suppliers"},{key:"analytics",label:"Analytics"},
-  {key:"recognizer",label:"Code Recognizer"},{key:"users",label:"Users",admin:true},
+  {key:"recognizer",label:"Code Recognizer"},{key:"theory",label:"Automata Theory"},{key:"users",label:"Users",admin:true},
 ];
 export { NAV };
 
@@ -29,7 +30,7 @@ export default function Sidebar({ page, go, open, onLogout, user }:{
   const items = NAV.filter(n => !n.admin || user.role==="admin");
   return (
     <aside className={open?"open":""}>
-      <div className="brand"><span className="dot">💊</span> MedIQ</div>
+      <div className="brand"><span className="dot">💊</span> PharmaHub</div>
       <nav>{items.map(n=>(
         <button key={n.key} className={page===n.key?"active":""} onClick={()=>go(n.key)}>
           <Icon d={(I as Record<string,string>)[n.key]}/>{n.label}</button>
@@ -40,7 +41,7 @@ export default function Sidebar({ page, go, open, onLogout, user }:{
           <div><b>{user.full_name}</b><span>{ROLE_LABEL[user.role]||user.role}</span></div>
         </div>
         <button className="signout" onClick={onLogout}>⇥ Sign out</button>
-        <div className="copy">COM244 · Automata-validated pharmacy inventory</div>
+        <div className="copy">CCAUTOMA · COM244 · Automata-validated pharmacy inventory</div>
       </div>
     </aside>
   );

@@ -1,0 +1,24 @@
+digraph G {
+ rankdir=LR; bgcolor="white"; nodesep=0.35; ranksep=0.55;
+ node [shape=circle fontname="Helvetica" fontsize=13 width=0.6 fixedsize=false];
+ edge [fontname="Helvetica" fontsize=11];
+ start [shape=point width=0.08];
+ start -> "p0";
+ "p0" [shape=circle];
+ "p1" [shape=circle];
+ "p2" [shape=circle];
+ "p3" [shape=circle];
+ "p4" [shape=circle];
+ "p5" [shape=circle];
+ "p6" [shape=circle];
+ "p7" [shape=doublecircle];
+ "p0" -> "p1" [label="M"];
+ "p0" -> "p2" [label="S"];
+ "p0" -> "p3" [label="C"];
+ "p1" -> "p4" [label="ε"];
+ "p2" -> "p4" [label="ε"];
+ "p3" -> "p4" [label="ε"];
+ "p4" -> "p5" [label="0-9"];
+ "p5" -> "p6" [label="0-9"];
+ "p6" -> "p7" [label="0-9"];
+}

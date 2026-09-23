@@ -1,7 +1,7 @@
-# PharmaHub — Pharmacy Inventory + Product-Code Recognizer (COM244)
+# PharmaHub — Pharmacy Inventory + Product-Code Recognizer (CCAUTOMA · COM244)
 
 PharmaHub is a pharmacy **Inventory Management System** with a built-in **automata
-recognizer**. The recognizer is the COM244 graded part: a **minimized DFA** that decides
+recognizer**. The recognizer is the CCAUTOMA graded part: a **minimized DFA** that decides
 whether a pharmacy product code (like `M001`, `S002`, `C001`) is valid. Every medicine you add
 is checked by that DFA before it can be saved — that is how the two halves connect.
 
@@ -99,15 +99,26 @@ Each medicine also has **Stock** (record a stock-in / stock-out / adjustment) an
 
 ## The automata part (what gets graded)
 
-- Full write-up with the RE, NFA, DFA, and minimization: **`docs/AUTOMATA_DESIGN.md`**
+- Full write-up (problem, language, RE, NFA, subset construction, minimization): **`docs/AUTOMATA_DESIGN.md`**
+- Test cases with state paths and results: **`docs/TEST_RESULTS.md`**
+- Final report (all 24 required sections, Word): **`docs/PharmaHub_CCAUTOMA_Report.docx`**
+- Defense plan with timing and likely questions: **`docs/DEMO_SCRIPT.md`**
 - The DFA in code (one source of truth): **`backend/app/automata/definitions.py`**
+- NFA → DFA → minimized DFA, built in code: **`backend/app/automata/construction.py`**
+- Same construction in the web app, step by step: **Automata Theory** page (sidebar)
 - Standalone command-line simulator (no web needed):
   ```
   cd /d L:\pharmacy-inventory-recognizer
   python cli/simulator.py
   ```
-  or `python cli/simulator.py --demo` to run 20 test cases at once.
+  `python cli/simulator.py --demo` runs the 10 accepted + 10 rejected test cases.
+  `python cli/simulator.py --theory` shows the NFA, subset construction and minimization step by step.
   (Or just double-click `run-simulator.bat`.)
+- Automated tests, including the RE = NFA = DFA = minimized DFA equivalence check:
+  ```
+  cd /d L:\pharmacy-inventory-recognizer\backend
+  python -m pytest -v
+  ```
 
 **Language:** one letter `M` / `S` / `C`, then exactly three digits.
 `M` = Medicine, `S` = Supplement, `C` = Consumable. Example valid codes: `M001`, `S250`, `C999`.
@@ -131,7 +142,5 @@ Create the database once in psql: `CREATE DATABASE pharmahub;` then start the ba
 
 ## Project layout
 
-See **`docs/STRUCTURE.md`** for the folder tree and what each part does.
-The finished submission write-ups are `docs/COM244_Report.docx` (full report) and
-`docs/DEMO_SCRIPT.docx` (what to say/click during the defense).
-Other design docs: `docs/SYSTEM_DESIGN.md`, `docs/COM244_REPORT_OUTLINE.md`.
+See **`docs/STRUCTURE.md`** for the folder tree and what each part does, and
+**`docs/SYSTEM_DESIGN.md`** for the architecture and how the DFA is used.

@@ -8,13 +8,14 @@ import OrdersPage from "./pages/OrdersPage";
 import SuppliersPage from "./pages/SuppliersPage";
 import AnalyticsPage from "./pages/AnalyticsPage";
 import RecognizerPage from "./pages/RecognizerPage";
+import TheoryPage from "./pages/TheoryPage";
 import UsersPage from "./pages/UsersPage";
 import { loadAuth, clearAuth, ROLE_LABEL, type AuthUser } from "./lib/auth";
 
 const PAGES:Record<string,()=>JSX.Element> = {
   dashboard:DashboardPage, medicines:MedicinesPage, categories:CategoriesPage,
   orders:OrdersPage, suppliers:SuppliersPage, analytics:AnalyticsPage,
-  recognizer:RecognizerPage, users:UsersPage,
+  recognizer:RecognizerPage, theory:TheoryPage, users:UsersPage,
 };
 
 export default function App(){

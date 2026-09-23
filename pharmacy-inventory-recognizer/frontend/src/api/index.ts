@@ -30,3 +30,19 @@ export const getUsers      = () => apiGet<User[]>("/users");
 export const addUser       = (u:UserInput) => apiPost<User>("/users",u);
 export const editUser      = (id:number,u:UserInput) => apiPut<User>(`/users/${id}`,u);
 export const delUser       = (id:number) => apiDel(`/users/${id}`);
+
+export type TheoryStep = { from:string; subset:string[]; symbol:string; move:string[]; closure:string[]; result:string; new:boolean };
+export type Theory = {
+  alphabet:string[]; regex:string; columns:string[];
+  nfa:{ states:string[]; start:string; accepting:string[];
+        rows:{ state:string; cells:Record<string,string[]>; eps:string[]; meaning:string }[] };
+  subset:{ start:string; steps:TheoryStep[]; possible_subsets:number;
+           states:{ name:string; subset:string[]; accepting:boolean; row:Record<string,string> }[] };
+  minimization:{ unreachable:string[]; rounds:string[][][]; merged:string[][];
+                 blocks:{ members:string[]; name:string }[];
+                 states:{ name:string; row:Record<string,string>; accepting:boolean; start:boolean }[] };
+  counts:{ nfa:number; dfa:number; min:number };
+  matches_simulator:boolean;
+  subset_names:Record<string,string[]>;
+};
+export const getTheory = () => apiGet<Theory>("/recognizer/theory");

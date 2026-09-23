@@ -45,18 +45,18 @@ def _explain_rejection(result: RunResult) -> str:
         bad = ", ".join(repr(s) for s in result.invalid_symbols)
         return f"contains symbol(s) not in the alphabet: {bad}"
 
-    length = len(result.input_string)
-    if length == 0:
+    text = result.input_string
+    if not text:
         return "empty input - a code must be a letter followed by 3 digits"
-    if length < 4:
-        return f"too short ({length} symbols) - expected exactly 4"
-    if length > 4:
-        return f"too long ({length} symbols) - expected exactly 4"
-    # Correct length, valid symbols, but still rejected -> wrong shape.
-    first = result.input_string[0]
-    if first not in d.LETTERS:
+    # Explain the FIRST place the input breaks the pattern <letter><d><d><d>.
+    if text[0] not in d.LETTERS:
         return "first symbol must be a category letter (M, S or C)"
-    return "digits are misplaced - format must be <letter><digit><digit><digit>"
+    for pos, ch in enumerate(text[1:4], start=2):
+        if ch not in d.DIGITS:
+            return f"symbol {pos} must be a digit, found {ch!r}"
+    if len(text) < 4:
+        return f"too short ({len(text)} symbols) - expected exactly 4"
+    return f"too long ({len(text)} symbols) - expected exactly 4"
 
 
 def recognize(code: str) -> RecognitionResult:

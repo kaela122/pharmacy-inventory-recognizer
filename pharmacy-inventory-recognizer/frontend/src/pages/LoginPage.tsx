@@ -27,7 +27,7 @@ export default function LoginPage({ onLogin }:{ onLogin:(u:AuthUser)=>void }){
       <div className="login-box">
         <div className="login-logo">
           <div className="dot">💊</div>
-          <h1>MedIQ</h1><p>Inventory Management System</p>
+          <h1>PharmaHub</h1><p>Inventory Management System</p>
         </div>
         <div className="panel">
           <h2 style={{textTransform:"none",fontSize:15,color:"var(--ink)",letterSpacing:0}}>🛡️ Terminal Sign In</h2>
@@ -50,7 +50,7 @@ export default function LoginPage({ onLogin }:{ onLogin:(u:AuthUser)=>void }){
             </div>
           ))}
         </div>
-        <p style={{textAlign:"center",color:"var(--faint)",fontSize:10,marginTop:16,fontFamily:"var(--mono)"}}>COM244 · Automata-validated pharmacy inventory</p>
+        <p style={{textAlign:"center",color:"var(--faint)",fontSize:10,marginTop:16,fontFamily:"var(--mono)"}}>CCAUTOMA · Automata-validated pharmacy inventory</p>
       </div>
     </div>
   );

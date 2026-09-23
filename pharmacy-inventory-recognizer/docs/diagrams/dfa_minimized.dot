@@ -1,0 +1,24 @@
+digraph G {
+ rankdir=LR; bgcolor="white"; nodesep=0.35; ranksep=0.55;
+ node [shape=circle fontname="Helvetica" fontsize=13 width=0.6 fixedsize=false];
+ edge [fontname="Helvetica" fontsize=11];
+ start [shape=point width=0.08];
+ start -> "q0";
+ "q0" [shape=circle label="q0"];
+ "qDead" [shape=circle label="qDead" style=dashed color="gray40" fontcolor="gray30"];
+ "q1" [shape=circle label="q1"];
+ "q2" [shape=circle label="q2"];
+ "q3" [shape=circle label="q3"];
+ "q4" [shape=doublecircle label="q4"];
+ { rank=sink; "qDead"; }
+ "q0" -> "q1" [label="M, S, C"];
+ "q0" -> "qDead" [label="0-9" color="gray60" fontcolor="gray40"];
+ "qDead" -> "qDead" [label="M, S, C, 0-9"];
+ "q1" -> "qDead" [label="M, S, C" color="gray60" fontcolor="gray40"];
+ "q1" -> "q2" [label="0-9"];
+ "q2" -> "qDead" [label="M, S, C" color="gray60" fontcolor="gray40"];
+ "q2" -> "q3" [label="0-9"];
+ "q3" -> "qDead" [label="M, S, C" color="gray60" fontcolor="gray40"];
+ "q3" -> "q4" [label="0-9"];
+ "q4" -> "qDead" [label="M, S, C, 0-9" color="gray60" fontcolor="gray40"];
+}

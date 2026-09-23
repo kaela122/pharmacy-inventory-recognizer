@@ -1,5 +1,5 @@
 """
-COM244 Tester / QA
+CCAUTOMA Tester / QA
 ==================
 Test cases that verify the minimized DFA behaves exactly as the language
 specification requires.

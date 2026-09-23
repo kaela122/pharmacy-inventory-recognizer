@@ -7,19 +7,19 @@ export default function RecognizerPage(){
   const [code,setCode]=useState("M001"); const [active,setActive]=useState(START);
   const [res,setRes]=useState<ReturnType<typeof runDFA>|null>(null);
   function run(){
-    const raw=code.trim().toUpperCase(); const r=runDFA(raw); setRes(r); setActive(START);
+    const raw=code; const r=runDFA(raw); setRes(r); setActive(START);
     if(!r.steps.length){ setActive(r.final); return; }
     let k=0; const t=setInterval(()=>{ if(k>=r.steps.length){clearInterval(t);return;} setActive(r.steps[k].to); k++; },460);
   }
-  const raw=code.trim().toUpperCase(); const good=res?.accepted;
+  const raw=code; const good=res?.accepted;
   return (
     <>
-      <h2 className="page-h">Code Recognizer</h2><p className="page-sub">COM244 · minimized DFA</p>
+      <h2 className="page-h">Code Recognizer</h2><p className="page-sub">CCAUTOMA · minimized DFA</p>
       <div className="panel">
         <h2 style={{textTransform:"none",fontSize:14,color:"var(--ink)",letterSpacing:0}}>Validate a pharmacy product code</h2>
-        <p style={{color:"var(--muted)",fontSize:13,marginTop:-8,marginBottom:12}}>Valid: a letter (M, S or C) then 3 digits — e.g. <span className="mono">M001</span>. Regex <span className="mono">(M|S|C)(0-9)(0-9)(0-9)</span></p>
+        <p style={{color:"var(--muted)",fontSize:13,marginTop:-8,marginBottom:12}}>Valid: a letter (M, S or C) then 3 digits — e.g. <span className="mono">M001</span>. RE <span className="mono">(M|S|C)DDD</span>, D = 0|1|…|9. Input is checked exactly as typed, so lowercase letters and spaces are rejected.</p>
         <div style={{display:"flex",gap:10}}>
-          <input className="mono" value={code} maxLength={10} onChange={e=>setCode(e.target.value)} onKeyDown={e=>e.key==="Enter"&&run()}/>
+          <input className="mono" style={{textTransform:"none"}} value={code} maxLength={10} onChange={e=>setCode(e.target.value)} onKeyDown={e=>e.key==="Enter"&&run()}/>
           <button className="btn" onClick={run}>Validate</button></div>
         <div className="rec-chain">
           {CHAIN.map((s,i)=>(<span key={s} style={{display:"flex",alignItems:"center",gap:6}}>
@@ -38,7 +38,7 @@ export default function RecognizerPage(){
         </div>}
       </div>
       <div className="panel"><h2>Why it matters here</h2>
-        <p style={{color:"var(--muted)",margin:0,fontSize:13.5}}>Every medicine added on the Medicines screen runs through this exact automaton before it can be saved. This links your COM244 automata theory to the pharmacy inventory system.</p></div>
+        <p style={{color:"var(--muted)",margin:0,fontSize:13.5}}>Every medicine added on the Medicines screen runs through this exact automaton before it can be saved. This links your CCAUTOMA automata theory to the pharmacy inventory system.</p></div>
     </>
   );
 }
